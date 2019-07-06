@@ -1,3 +1,4 @@
+#include <curses.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -52,6 +53,23 @@ void print_table(int __height, int __width, int** array)
         }
         putchar('\n');
     }
+}
+
+void print_table_with_ncurses(int __height, int __width, int** __array)
+{
+    // TODO: Decrease screen flicker.
+    clear();
+    for (int y = 0; y < __height; y++) {
+        for (int x = 0; x < __width; x++) {
+            move(y, x);
+            if (__array[y][x] == 1) {
+                addch('@');
+            } else {
+                addch(' ');
+            }
+        }
+    }
+    refresh();
 }
 
 // Investigate each elements of __current_generation and assign -1, 0 or 1 to __next_generation_table
