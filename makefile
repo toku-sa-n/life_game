@@ -3,7 +3,7 @@ CFLAGS=-Wall -O2 -pipe -march=native -lncurses
 DEPS=life_game_lib.h
 BUILD=main.o life_game_lib.o
 TEST=test.o life_game_lib.o
-PROGRAM_NAME=main
+PROGRAM_NAME=main.out
 
 %.o:%.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
