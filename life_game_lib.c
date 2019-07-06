@@ -47,11 +47,11 @@ void init_life_game(int __height, int __width, int** __array)
     }
 }
 
-void print_table(int __height, int __width, int** array)
+void print_table(int __height, int __width, int** __array)
 {
     for (int i = 0; i < __height; i++) {
         for (int j = 0; j < __width; j++) {
-            printf("%3d ", array[i][j]);
+            printf("%3d ", __array[i][j]);
         }
         putchar('\n');
     }
