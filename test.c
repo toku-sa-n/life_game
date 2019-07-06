@@ -17,6 +17,7 @@ void init_life_game_test(void)
         }
         putchar('\n');
     }
+    putchar('\n');
     free_two_dimension_array((size_t)10, (void**)life_game_table);
 }
 
