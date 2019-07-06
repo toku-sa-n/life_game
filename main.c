@@ -25,7 +25,8 @@ int main(void)
     srand((unsigned int)time(NULL));
     init_life_game(height, width, life_game_table);
 
-    for (int i = 0; i < 100; i++) {
+    timeout(0);
+    while (getch() != 'q') {
         print_table_with_ncurses(height, width, life_game_table);
         proceed_generation(height, width, life_game_table, life_game_next_generation_table);
         add_two_array(height, width, life_game_table, life_game_next_generation_table);
