@@ -44,10 +44,10 @@ int main(int argc, char** argv)
     }
 
     // 1: Alive 0: Dead
-    int** life_game_table = (int**)two_dimension_calloc((size_t)height, (size_t)width, sizeof(int));
+    int** life_game_table = two_dimension_calloc_int((size_t)height, (size_t)width);
 
     // 1: Birth 0: No change -1: Die
-    int** life_game_next_generation_table = (int**)two_dimension_calloc((size_t)height, (size_t)width, sizeof(int));
+    int** life_game_next_generation_table = two_dimension_calloc_int((size_t)height, (size_t)width);
 
     srand((unsigned int)time(NULL));
     init_life_game(height, width, life_game_table);
@@ -68,8 +68,8 @@ int main(int argc, char** argv)
         usleep(100000);
     }
 
-    free_two_dimension_array((size_t)height, (void**)life_game_table);
-    free_two_dimension_array((size_t)height, (void**)life_game_next_generation_table);
+    free_two_dimension_array((size_t)height, life_game_table);
+    free_two_dimension_array((size_t)height, life_game_next_generation_table);
 
     endwin();
     return 0;

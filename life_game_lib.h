@@ -3,8 +3,8 @@
 
 #include <stddef.h>
 
-void** two_dimension_calloc(size_t __height, size_t __width, size_t __size);
-void free_two_dimension_array(size_t __height, void** __array);
+int** two_dimension_calloc_int(size_t __height, size_t __width);
+void free_two_dimension_array(size_t __height, int** __array);
 void init_life_game(int __height, int __width, int** __array);
 void print_table(int __height, int __width, int** array);
 void print_table_with_ncurses(int __height, int __width, int** __array);

@@ -2,15 +2,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void** two_dimension_calloc(size_t __height, size_t __width, size_t __size)
+// Creates two-dimension array and returns the pointer to that.
+// After calling this function, User must call free_two_dimension_array function.
+int** two_dimension_calloc_int(size_t __height, size_t __width)
 {
-    void** two_dimension_array = calloc(__height, sizeof(__size));
+    int** two_dimension_array = calloc(__height, sizeof(int*));
     if (two_dimension_array == NULL) {
         return NULL;
     }
 
     for (size_t i = 0; i < __height; i++) {
-        two_dimension_array[i] = calloc(__width, sizeof(__size));
+        two_dimension_array[i] = calloc(__width, sizeof(int));
 
         if (two_dimension_array[i] == NULL) {
             // Free memories which have already allocated.
@@ -27,8 +29,8 @@ void** two_dimension_calloc(size_t __height, size_t __width, size_t __size)
     return two_dimension_array;
 }
 
-// Free the memories of array which were allocated by two_dimension_calloc function.
-void free_two_dimension_array(size_t __height, void** __array)
+// Free the memories of array which were allocated by two_dimension_calloc_int function.
+void free_two_dimension_array(size_t __height, int** __array)
 {
     for (size_t i = 0; i < __height; i++) {
         free(__array[i]);
