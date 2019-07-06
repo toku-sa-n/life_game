@@ -27,7 +27,6 @@ int main(void)
 
     for (int i = 0; i < 100; i++) {
         print_table_with_ncurses(height, width, life_game_table);
-        putchar('\n');
         proceed_generation(height, width, life_game_table, life_game_next_generation_table);
         add_two_array(height, width, life_game_table, life_game_next_generation_table);
         refresh();
