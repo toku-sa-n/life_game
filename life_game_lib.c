@@ -33,3 +33,12 @@ void free_two_dimension_array(size_t __height, void** __array)
     }
     free(__array);
 }
+
+void init_life_game(int __height, int __width, int** __array)
+{
+    for (int i = 0; i < __height; i++) {
+        for (int j = 0; j < __width; j++) {
+            __array[i][j] = rand() % 2;
+        }
+    }
+}
