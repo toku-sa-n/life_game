@@ -20,10 +20,27 @@ void init_life_game_test(void)
     free_two_dimension_array((size_t)10, (void**)life_game_table);
 }
 
+void print_table_test(void)
+{
+    int height = 10;
+    int width = 10;
+    int** array = (int**)two_dimension_calloc((size_t)height, (size_t)width, sizeof(int));
+
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            array[i][j] = i + j;
+        }
+    }
+    print_table(height, width, array);
+    putchar('\n');
+
+    free_two_dimension_array((size_t)height, (void**)array);
+}
 int main(void)
 {
     two_dimension_calloc_test();
     init_life_game_test();
+    print_table_test();
 
     return 0;
 }
