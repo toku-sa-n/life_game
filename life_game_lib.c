@@ -81,7 +81,7 @@ void proceed_generation(int __height, int __width, int** __current_generation_ta
         for (int x = 0; x < __width; x++) {
             int alive_num = 0;
 
-            // TODO: Too much evaluation. Decrease it.
+            // TODO: Too many evaluation. Decrease it.
             if (y > 0 && x > 0 && __current_generation_table[y - 1][x - 1] == 1) {
                 alive_num++;
             }
