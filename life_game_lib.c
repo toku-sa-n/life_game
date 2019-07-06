@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 
 void** two_dimension_calloc(size_t __height, size_t __width, size_t __size)
@@ -42,3 +43,14 @@ void init_life_game(int __height, int __width, int** __array)
         }
     }
 }
+
+void print_table(int __height, int __width, int** array)
+{
+    for (int i = 0; i < __height; i++) {
+        for (int j = 0; j < __width; j++) {
+            printf("%3d ", array[i][j]);
+        }
+        putchar('\n');
+    }
+}
+
