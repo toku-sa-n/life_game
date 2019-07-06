@@ -54,3 +54,48 @@ void print_table(int __height, int __width, int** array)
     }
 }
 
+// Investigate each elements of __current_generation and assign -1, 0 or 1 to __next_generation_table
+// -1 represents that the life in that square will die in next generation, 0 represents it remains in next generation,
+// and 1 represents that a new life will appear in next generation.
+void proceed_generation(int __height, int __width, int** __current_generation_table, int** __next_generation_table)
+{
+    for (int y = 0; y < __height; y++) {
+        for (int x = 0; x < __width; x++) {
+            int alive_num = 0;
+
+            // TODO: Too much evaluation. Decrease it.
+            if (y > 0 && x > 0 && __current_generation_table[y - 1][x - 1] == 1) {
+                alive_num++;
+            }
+            if (y > 0 && __current_generation_table[y - 1][x] == 1) {
+                alive_num++;
+            }
+            if (y > 0 && x < __width - 1 && __current_generation_table[y - 1][x + 1] == 1) {
+                alive_num++;
+            }
+            if (x > 0 && __current_generation_table[y][x - 1] == 1) {
+                alive_num++;
+            }
+            if (x < __width - 1 && __current_generation_table[y][x + 1] == 1) {
+                alive_num++;
+            }
+            if (y < __height - 1 && x > 0 && __current_generation_table[y + 1][x - 1] == 1) {
+                alive_num++;
+            }
+            if (y < __height - 1 && __current_generation_table[y + 1][x] == 1) {
+                alive_num++;
+            }
+            if (y < __height - 1 && x < __width - 1 && __current_generation_table[y + 1][x + 1] == 1) {
+                alive_num++;
+            }
+
+            if ((alive_num <= 1 || alive_num >= 4) && __current_generation_table[y][x] == 1) {
+                __next_generation_table[y][x] = -1;
+            } else if (alive_num == 3 && __current_generation_table[y][x] == 0) {
+                __next_generation_table[y][x] = 1;
+            } else {
+                __next_generation_table[y][x] = 0;
+            }
+        }
+    }
+}
