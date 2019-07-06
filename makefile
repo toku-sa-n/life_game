@@ -12,10 +12,10 @@ build:$(BUILD)
 	$(CC) -o $(PROGRAM_NAME) $^ $(CFLAGS)
 
 run:
-	./main
+	./$(PROGRAM_NAME)
 
 run_verbose:
-	./main --verbose
+	./$(PROGRAM_NAME) --verbose
 
 test:$(TEST)
 	$(CC) -o $@ $^ $(CFLAGS)
