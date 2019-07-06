@@ -4,3 +4,6 @@
 ```
 make && make run
 ```
+## How to end
+
+press q.
