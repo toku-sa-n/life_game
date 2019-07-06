@@ -99,3 +99,13 @@ void proceed_generation(int __height, int __width, int** __current_generation_ta
         }
     }
 }
+
+// array_1 += array_2
+void add_two_array(int __height, int __width, int** __array_1, int** __array_2)
+{
+    for (int i = 0; i < __height; i++) {
+        for (int j = 0; j < __width; j++) {
+            __array_1[i][j] += __array_2[i][j];
+        }
+    }
+}
