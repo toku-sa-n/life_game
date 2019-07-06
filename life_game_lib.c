@@ -57,8 +57,6 @@ void print_table(int __height, int __width, int** array)
 
 void print_table_with_ncurses(int __height, int __width, int** __array)
 {
-    // TODO: Decrease screen flicker.
-    clear();
     for (int y = 0; y < __height; y++) {
         for (int x = 0; x < __width; x++) {
             move(y, x);
