@@ -3,22 +3,26 @@
 
 void two_dimension_calloc_test(void)
 {
-    int** two_dimension_array = (int**)two_dimension_calloc(50000, 50000, sizeof(int));
-    free_two_dimension_array((size_t)50000, (void**)two_dimension_array);
+    int height = 50000;
+    int width = 50000;
+    int** two_dimension_array = (int**)two_dimension_calloc((size_t)height, (size_t)width, sizeof(int));
+    free_two_dimension_array((size_t)height, (void**)two_dimension_array);
 }
 
 void init_life_game_test(void)
 {
-    int** life_game_table = (int**)two_dimension_calloc(10, 10, sizeof(int));
-    init_life_game(10, 10, life_game_table);
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 10; j++) {
+    int height = 10;
+    int width = 10;
+    int** life_game_table = (int**)two_dimension_calloc((size_t)height, (size_t)width, sizeof(int));
+    init_life_game(height, width, life_game_table);
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
             printf("%d ", life_game_table[i][j]);
         }
         putchar('\n');
     }
     putchar('\n');
-    free_two_dimension_array((size_t)10, (void**)life_game_table);
+    free_two_dimension_array((size_t)height, (void**)life_game_table);
 }
 
 void print_table_test(void)
