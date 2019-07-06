@@ -8,4 +8,5 @@ void free_two_dimension_array(size_t __height, void** __array);
 void init_life_game(int __height, int __width, int** __array);
 void print_table(int __height, int __width, int** array);
 void proceed_generation(int __height, int __width, int** __current_generation_table, int** __next_generation_table);
+void add_two_array(int __height, int __width, int** __array_1, int** __array_2);
 #endif
