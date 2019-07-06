@@ -14,6 +14,9 @@ build:$(BUILD)
 run:
 	./main
 
+run_verbose:
+	./main --verbose
+
 test:$(TEST)
 	$(CC) -o $@ $^ $(CFLAGS)
 	./test
