@@ -70,12 +70,38 @@ void proceed_generation_test(void)
     free_two_dimension_array((size_t)height, (void**)next_generation_table);
 }
 
+void add_two_array_test(void)
+{
+    int height = 5;
+    int width = 5;
+
+    int** array_1 = (int**)two_dimension_calloc((size_t)height, (size_t)width, sizeof(int));
+    int** array_2 = (int**)two_dimension_calloc((size_t)height, (size_t)width, sizeof(int));
+
+    init_life_game(height, width, array_1);
+    init_life_game(height, width, array_2);
+
+    puts("array_1");
+    print_table(height, width, array_1);
+    puts("array_2");
+    print_table(height, width, array_2);
+
+    add_two_array(height, width, array_1, array_2);
+
+    puts("array_1 + array_2");
+    print_table(height, width, array_1);
+
+    free_two_dimension_array((size_t)height, (void**)array_1);
+    free_two_dimension_array((size_t)height, (void**)array_2);
+}
+
 int main(void)
 {
     two_dimension_calloc_test();
     init_life_game_test();
     print_table_test();
     proceed_generation_test();
+    add_two_array_test();
 
     return 0;
 }
