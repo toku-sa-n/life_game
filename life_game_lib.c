@@ -57,6 +57,8 @@ void print_table(int __height, int __width, int** __array)
     }
 }
 
+// Print two-dimension array with ncurses function.
+// After calling this function, user must call refresh() to print characters actually.
 void print_table_with_ncurses(int __height, int __width, int** __array)
 {
     for (int y = 0; y < __height; y++) {
@@ -69,7 +71,6 @@ void print_table_with_ncurses(int __height, int __width, int** __array)
             }
         }
     }
-    refresh();
 }
 
 // Investigate each elements of __current_generation and assign -1, 0 or 1 to __next_generation_table

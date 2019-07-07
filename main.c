@@ -60,7 +60,6 @@ int main(int argc, char** argv)
         print_table_with_ncurses(height, width, life_game_table);
         if (verbose) {
             mvprintw(LINES - 1, 0, "Generation %ld", generation++);
-            refresh();
         }
         proceed_generation(height, width, life_game_table, life_game_next_generation_table);
         add_two_array(height, width, life_game_table, life_game_next_generation_table);
