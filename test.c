@@ -1,18 +1,25 @@
 #include "life_game_lib.h"
 #include <stdio.h>
 
-int is_two_arrays_equal(int height, int width, int** array_1, int** array_2)
+void print_four_four_array(int array[][4])
 {
-    for (int y = 0; y < height; y++) {
-        for (int x = 0; x < width; x++) {
-            if (array_1[y][x] != array_2[y][x]) {
-                fprintf(stderr, "Test failed! array_1 is not the same with array_2!\n");
-                fprintf(stderr, "array_1:\n");
-                print_table(height, width, array_1);
-                putchar('\n');
-                fprintf(stderr, "array_2:\n");
-                print_table(height, width, array_2);
-                putchar('\n');
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            printf("%d ", array[i][j]);
+        }
+        putchar('\n');
+    }
+}
+int is_two_arrays_equal_size_four(int array_1[][4], int array_2[][4])
+{
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            if (array_1[i][j] != array_2[i][j]) {
+                fprintf(stderr, "array 1 and array 2 are not the same!\n");
+                fprintf(stderr, "array 1:");
+                print_four_four_array(array_1);
+                fprintf(stderr, "array 2:");
+                print_four_four_array(array_2);
                 return 0;
             }
         }
@@ -91,25 +98,21 @@ void proceed_generation_test(void)
 
 int two_array_equal_test(void)
 {
-    int** array_1 = two_dimension_calloc_int(2, 2);
-    int** array_2 = two_dimension_calloc_int(2, 2);
+    int array_1[][4] = {
+        { 3, 1, 4, 1 },
+        { 2, 2, 3, 5 },
+        { 2, 1, -3, 0 },
+        { 5, 6, 9, -9 },
+    };
 
-    array_1[0][0] = 0;
-    array_1[0][1] = 1;
-    array_1[1][0] = 2;
-    array_1[1][1] = 3;
+    int array_2[][4] = {
+        { 3, 1, 4, 1 },
+        { 2, 2, 3, 5 },
+        { 2, 1, -3, 0 },
+        { 5, 6, 9, -9 },
+    };
 
-    array_2[0][0] = 0;
-    array_2[0][1] = 1;
-    array_2[1][0] = 2;
-    array_2[1][1] = 3;
-
-    if (!is_two_arrays_equal(2, 2, array_1, array_2)) {
-        free_two_dimension_array(2, array_1);
-        free_two_dimension_array(2, array_2);
-        return 1;
-    }
-    return 0;
+    return !is_two_arrays_equal_size_four(array_1, array_2);
 }
 
 int main(void)
