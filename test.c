@@ -1,6 +1,25 @@
 #include "life_game_lib.h"
 #include <stdio.h>
 
+int is_two_arrays_equal(int height, int width, int** array_1, int** array_2)
+{
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            if (array_1[y][x] != array_2[y][x]) {
+                fprintf(stderr, "Test failed! array_1 is not the same with array_2!\n");
+                fprintf(stderr, "array_1:\n");
+                print_table(height, width, array_1);
+                putchar('\n');
+                fprintf(stderr, "array_2:\n");
+                print_table(height, width, array_2);
+                putchar('\n');
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+
 void two_dimension_calloc_int_test(void)
 {
     int height = 50000;
@@ -70,29 +89,27 @@ void proceed_generation_test(void)
     free_two_dimension_array((size_t)height, next_generation_table);
 }
 
-void add_two_array_test(void)
+int two_array_equal_test(void)
 {
-    int height = 5;
-    int width = 5;
+    int** array_1 = two_dimension_calloc_int(2, 2);
+    int** array_2 = two_dimension_calloc_int(2, 2);
 
-    int** array_1 = two_dimension_calloc_int((size_t)height, (size_t)width);
-    int** array_2 = two_dimension_calloc_int((size_t)height, (size_t)width);
+    array_1[0][0] = 0;
+    array_1[0][1] = 1;
+    array_1[1][0] = 2;
+    array_1[1][1] = 3;
 
-    init_life_game(height, width, array_1);
-    init_life_game(height, width, array_2);
+    array_2[0][0] = 0;
+    array_2[0][1] = 1;
+    array_2[1][0] = 2;
+    array_2[1][1] = 3;
 
-    puts("array_1");
-    print_table(height, width, array_1);
-    puts("array_2");
-    print_table(height, width, array_2);
-
-    add_two_array(height, width, array_1, array_2);
-
-    puts("array_1 + array_2");
-    print_table(height, width, array_1);
-
-    free_two_dimension_array((size_t)height, array_1);
-    free_two_dimension_array((size_t)height, array_2);
+    if (!is_two_arrays_equal(2, 2, array_1, array_2)) {
+        free_two_dimension_array(2, array_1);
+        free_two_dimension_array(2, array_2);
+        return 1;
+    }
+    return 0;
 }
 
 int main(void)
@@ -101,7 +118,9 @@ int main(void)
     init_life_game_test();
     print_table_test();
     proceed_generation_test();
-    add_two_array_test();
+    if (two_array_equal_test()) {
+        return 1;
+    };
 
     return 0;
 }
