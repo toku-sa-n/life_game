@@ -2,6 +2,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Returns positive reminder.
+int positive_modulo(int number, int denom)
+{
+    return (number % denom + denom) % denom;
+}
+
 // Creates two-dimension array and returns the pointer to that.
 // After calling this function, User must call free_two_dimension_array function.
 int** two_dimension_calloc_int(size_t __height, size_t __width)
@@ -82,30 +88,30 @@ void proceed_generation(int __height, int __width, int** __current_generation_ta
         for (int x = 0; x < __width; x++) {
             int alive_num = 0;
 
-            // TODO: Too many evaluation. Decrease it.
-            if (y > 0 && x > 0 && __current_generation_table[y - 1][x - 1] == 1) {
-                alive_num++;
-            }
-            if (y > 0 && __current_generation_table[y - 1][x] == 1) {
-                alive_num++;
-            }
-            if (y > 0 && x < __width - 1 && __current_generation_table[y - 1][x + 1] == 1) {
-                alive_num++;
-            }
-            if (x > 0 && __current_generation_table[y][x - 1] == 1) {
-                alive_num++;
-            }
-            if (x < __width - 1 && __current_generation_table[y][x + 1] == 1) {
-                alive_num++;
-            }
-            if (y < __height - 1 && x > 0 && __current_generation_table[y + 1][x - 1] == 1) {
-                alive_num++;
-            }
-            if (y < __height - 1 && __current_generation_table[y + 1][x] == 1) {
-                alive_num++;
-            }
-            if (y < __height - 1 && x < __width - 1 && __current_generation_table[y + 1][x + 1] == 1) {
-                alive_num++;
+            // positive_modulo function is needed in order to fit the value within range.
+            // ex. when y == 0, y - 1 == -1 but positive_modulo(y - 1, y) == y - 1.
+            int y_coord[] = {
+                positive_modulo(y - 1, __height),
+                y,
+                positive_modulo(y + 1, __height),
+            };
+            int x_coord[] = {
+                positive_modulo(x - 1, __width),
+                x,
+                positive_modulo(x + 1, __width),
+            };
+
+            for (int y_idx = 0; y_idx < 3; y_idx++) {
+                for (int x_idx = 0; x_idx < 3; x_idx++) {
+                    if (y_idx == x_idx && x_idx == 1) {
+                        // exclude coord (y, x).
+                        continue;
+                    }
+
+                    if (__current_generation_table[y_coord[y_idx]][x_coord[x_idx]] == 1) {
+                        alive_num++;
+                    }
+                }
             }
 
             if ((alive_num <= 1 || alive_num >= 4) && __current_generation_table[y][x] == 1) {
