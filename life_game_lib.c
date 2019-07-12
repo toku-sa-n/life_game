@@ -21,7 +21,7 @@ int** two_dimension_calloc_int(size_t __height, size_t __width)
         two_dimension_array[i] = calloc(__width, sizeof(int));
 
         if (two_dimension_array[i] == NULL) {
-            // Free memories which have already allocated.
+            // Release memories which have already allocated.
             // Not include two_dimension_array[i]
             // because two_dimension_array[j] is NULL.
             for (size_t j = 0; j < i; j++) {
