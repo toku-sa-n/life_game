@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall -O2 -pipe -march=native -lncurses
+CFLAGS=-Wall -O2 -pipe -march=native -lncurses -ltinfo
 DEPS=life_game_lib.h
 BUILD=main.o life_game_lib.o
 TEST=test.o life_game_lib.o
